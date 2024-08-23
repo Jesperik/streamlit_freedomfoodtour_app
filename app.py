@@ -27,6 +27,12 @@ creds_dict = {
     "client_x509_cert_url": st.secrets["google_sheets"]["client_x509_cert_url"],
 }
 
+# Define the scope
+scope = ["https://www.googleapis.com/auth/spreadsheets"]
+
+# Convert the dictionary to a credentials object with the scope
+creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
+
 # Convert the dictionary to a JSON string and then to credentials object
 creds = Credentials.from_service_account_info(creds_dict)
 
