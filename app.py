@@ -25,10 +25,12 @@ creds_dict = {
     "token_uri": st.secrets["google_sheets"]["token_uri"],
     "auth_provider_x509_cert_url": st.secrets["google_sheets"]["auth_provider_x509_cert_url"],
     "client_x509_cert_url": st.secrets["google_sheets"]["client_x509_cert_url"],
+    "universe_domain": st.secrets["google_sheets"]["universe_domain"]
 }
 
 # Define the scope
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+#"https://www.googleapis.com/auth/spreadsheets"
 
 # Convert the dictionary to a credentials object with the scope
 creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
