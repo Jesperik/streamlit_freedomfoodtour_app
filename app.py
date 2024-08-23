@@ -29,7 +29,7 @@ creds_dict = {
 }
 
 # Define the scope
-scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+scope = ["https://www.googleapis.com/auth/spreadsheets.readonly", "https://www.googleapis.com/auth/drive"]
 #scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 #"https://www.googleapis.com/auth/spreadsheets"
 # https://www.googleapis.com/auth/spreadsheets.readonly
