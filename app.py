@@ -29,8 +29,10 @@ creds_dict = {
 }
 
 # Define the scope
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+#scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 #"https://www.googleapis.com/auth/spreadsheets"
+# https://www.googleapis.com/auth/spreadsheets.readonly
 
 # Convert the dictionary to a credentials object with the scope
 creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
