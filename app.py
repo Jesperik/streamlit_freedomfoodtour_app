@@ -29,32 +29,25 @@ creds_dict = {
 }
 
 # Define the scope
-scope = ["https://www.googleapis.com/auth/spreadsheets.readonly", "https://www.googleapis.com/auth/drive"]
-#scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-#"https://www.googleapis.com/auth/spreadsheets"
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 # https://www.googleapis.com/auth/spreadsheets.readonly
 
 # Convert the dictionary to a credentials object with the scope
 creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
 
-# Convert the dictionary to a JSON string and then to credentials object
-creds = Credentials.from_service_account_info(creds_dict)
-
 # Authorize the client
 CLIENT = gspread.authorize(creds)
 
-# Google Sheets setup (when autorizing from local configuration .json file)
-#SCOPE = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-#CREDS = Credentials.from_service_account_file("dat/google_sheets_credentials.json", scopes=SCOPE)
-#CLIENT = gspread.authorize(CREDS)
-
 # Open your Google Sheet by name
 SHEET_NAME = "FreedomFoodTourData"
-sheet = CLIENT.open(SHEET_NAME).sheet1
+try:
+    sheet = CLIENT.open("FreedomFoodTourData").sheet1
+    #st.write("Authorization successful!")
+except Exception as e:
+    st.write(f"Authorization failed: {e}")
 
 # Fetch the data from Google Sheets
 data = sheet.get_all_records()
-
 df = pd.DataFrame(data)
 
 # Custom CSS for 90s hacker theme
