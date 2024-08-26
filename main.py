@@ -132,7 +132,7 @@ def display_add_entry(app):
 
 def display_sidebar(app):
     image = Image.open('dat/img.jfif')
-    st.sidebar.image(image)
+    st.sidebar.image(image, width=100)
     if st.session_state.username == app.params["valid_admin_username"]:
         st.sidebar.write("### Received Suggestions")
         st.sidebar.dataframe(app.suggestion_data, hide_index=True, use_container_width=True)
