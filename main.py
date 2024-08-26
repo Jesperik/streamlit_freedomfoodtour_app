@@ -140,7 +140,7 @@ def display_sidebar(app):
             if suggestion:
                 # Write the new suggestion to Google Sheets
                 app.suggestions.append_row([suggestion])
-                new_suggestion_row = pd.DataFrame({"Suggestion": suggestion})
+                new_suggestion_row = pd.DataFrame({"Suggestion": [suggestion]})
                 app.suggestion_data = pd.concat([app.suggestion_data, new_suggestion_row.fillna("")], ignore_index=True)
                 st.sidebar.success("Thank you for your suggestion!")
             else:
