@@ -151,7 +151,7 @@ def display_sidebar(app):
             else:
                 st.sidebar.warning("Please enter a suggestion before submitting.")
 
-    pad(padding=5, sidebar=True)
+    pad(padding=4, sidebar=True)
     display_logout()
 
 def display_logout():
