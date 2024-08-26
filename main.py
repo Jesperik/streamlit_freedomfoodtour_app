@@ -1,4 +1,5 @@
 from src.App import App
+from PIL import Image
 import streamlit as st
 import pandas as pd
 
