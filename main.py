@@ -13,10 +13,10 @@ st.set_page_config(
 
 def main():
     st.session_state.setdefault('app_instance', App())
-    try:
-        run(st.session_state.app_instance)
-    except:
-        st.error('ERROR: The program crashed unexpectedly!')
+    #try:
+    run(st.session_state.app_instance)
+    #except:
+    #    st.error('ERROR: The program crashed unexpectedly!')
 
 def run(app):
     initialize_session()
