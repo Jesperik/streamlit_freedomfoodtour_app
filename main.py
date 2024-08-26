@@ -13,10 +13,10 @@ st.set_page_config(
 
 def main():
     st.session_state.setdefault('app_instance', App())
-    #try:
-    run(st.session_state.app_instance)
-    #except:
-    #    st.error('ERROR: The program crashed unexpectedly!')
+    try:
+        run(st.session_state.app_instance)
+    except:
+        st.error('ERROR: The program crashed unexpectedly!')
 
 def run(app):
     initialize_session()
@@ -140,7 +140,8 @@ def display_sidebar(app):
             if suggestion:
                 # Write the new suggestion to Google Sheets
                 app.suggestions.append_row([suggestion])
-                app.suggestion_data = pd.concat([app.suggestion_data, pd.DataFrame([suggestion]).fillna("")], ignore_index=True)
+                new_suggestion_row = pd.DataFrame({"Suggestion": suggestion})
+                app.suggestion_data = pd.concat([app.suggestion_data, new_suggestion_row.fillna("")], ignore_index=True)
                 st.sidebar.success("Thank you for your suggestion!")
             else:
                 st.sidebar.warning("Please enter a suggestion before submitting.")
