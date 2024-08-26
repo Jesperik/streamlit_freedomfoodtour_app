@@ -131,7 +131,7 @@ def display_add_entry(app):
                 st.warning("Please fill in the required fields before submitting.")
 
 def display_sidebar(app):
-    image = Image.open('dat/img.jfif')
+    image = Image.open('dat/img.png')
     img_width = 200
     st.sidebar.image(image, width=img_width)
     if st.session_state.username == app.params["valid_admin_username"]:
