@@ -37,18 +37,19 @@ def initialize_session():
 
 def display_login(app):
     if not st.session_state.logged_in:
-        st.title("Login")
-        st.session_state.username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
+        with st.form(key="login_form"):
+            st.title("Login")
+            st.session_state.username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
 
-        if st.button("Login"):
-            if (st.session_state.username == app.params["valid_admin_username"] and password == app.params["valid_admin_password"]) or (
-                st.session_state.username == app.params["valid_guest_username"] and password == app.params["valid_guest_password"]):
-                st.session_state.logged_in = True
-                st.success("Login successful!")
-                st.rerun()
-            else:
-                st.error("Invalid username or password")
+            if st.form_submit_button("Login"):
+                if (st.session_state.username == app.params["valid_admin_username"] and password == app.params["valid_admin_password"]) or (
+                    st.session_state.username == app.params["valid_guest_username"] and password == app.params["valid_guest_password"]):
+                    st.session_state.logged_in = True
+                    st.success("Login successful!")
+                    st.rerun()
+                else:
+                    st.error("Invalid username or password")
 
 def display_header():
     st.markdown(
@@ -93,7 +94,7 @@ def display_body(app):
     pad(2)
 
 def display_add_entry(app):
-    st.write("### Score Board")
+    st.write("### Add an Entry")
     with st.form("add_row_form"):
         restaurant = st.text_input("Restaurant")
         style = st.text_input("Style")
@@ -140,7 +141,7 @@ def display_sidebar(app):
             if suggestion:
                 # Write the new suggestion to Google Sheets
                 app.suggestions.append_row([suggestion])
-                new_suggestion_row = pd.DataFrame({"Suggestion": [suggestion]})
+                new_suggestion_row = pd.DataFrame({"Suggestions": [suggestion]})
                 app.suggestion_data = pd.concat([app.suggestion_data, new_suggestion_row.fillna("")], ignore_index=True)
                 st.sidebar.success("Thank you for your suggestion!")
             else:
