@@ -41,6 +41,7 @@ class App:
             "auth_provider_x509_cert_url": st.secrets["google_sheets"]["auth_provider_x509_cert_url"],
             "client_x509_cert_url": st.secrets["google_sheets"]["client_x509_cert_url"],
             "universe_domain": st.secrets["google_sheets"]["universe_domain"],
+            "spreadsheet_url_key": st.secrets["google_sheets"]["spreadsheet_url_key"],
             "valid_admin_username" : st.secrets["app_login"]["valid_admin_username"],
             "valid_guest_username" : st.secrets["app_login"]["valid_guest_username"],
             "valid_admin_password" : st.secrets["app_login"]["valid_admin_password"],
@@ -62,9 +63,10 @@ class App:
 
     def get_sheet_data(self):
         # Open Google Sheet and fetch data
-        spreadsheet_name = "FreedomFoodTourData"
+        #spreadsheet_name = "FreedomFoodTourData"
         try:
-            spreadsheet = self.client.open(spreadsheet_name)
+            #spreadsheet = self.client.open(spreadsheet_name)
+            spreadsheet = self.client.open_by_key(self.params["spreadsheet_url_key"])
             self.score_board = spreadsheet.worksheet("score_board")
             self.suggestions = spreadsheet.worksheet("suggestions")
         except Exception as e:
